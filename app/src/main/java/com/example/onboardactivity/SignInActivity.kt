@@ -86,8 +86,10 @@ class SignInActivity : AppCompatActivity() {
         super.onResume()
         Log.d("SignIn", "Let-me-resume-pls");
 
-        _name = intent.getStringExtra("name")
-        _email = intent.getStringExtra("email")
+        _name = intent.getStringExtra("welcomeName")
+        _email = intent.getStringExtra("autoEmailCompletion")
+
+        Log.d("SignIn", " - NAME: $_name, EMAIL: $_email")
 
         if (_name != null && _email != null) {
             welcomeText.text = "Привет, $_name!"
