@@ -42,18 +42,15 @@ class SignUpActivity : AppCompatActivity() {
                 return@setOnClickListener;
             }
 
-            val userCredential = UserCredential(mapOf(
-                "name" to name,
-                "email" to email,
-                "password" to password
-            ))
-            // Способ сделать это через обычную строку
+            // Способ сделать это через дата-класс
+//            val userCredential = UserCredential(mapOf(
+//                "name" to name,
+//                "email" to email,
+//                "password" to password
+//            ))
 
-//            userCredential = listOf(mapOf("email" to email, "password" to password));
-//
-//            val storageString = userCredential.joinToString(";") {
-//                it.map { "${it.key}:${it.value}" }.joinToString(":")
-//            }
+            // Способ сделать это через обычную строку
+            val userCredential = "$email;$password"
 
             val intent = Intent(this, SignInActivity::class.java);
             intent.putExtra("verySafeStorage", userCredential)

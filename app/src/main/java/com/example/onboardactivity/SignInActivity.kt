@@ -39,23 +39,21 @@ class SignInActivity : AppCompatActivity() {
             val email = emailInput.text.toString()
             val password = passwordInput.text.toString()
 
-//            val receivedStorageString = intent.getStringExtra("verySafeStorage")
-//
-//            if (receivedStorageString !== null) {
-//                verySafeStorage.addAll(receivedStorageString.split(";").map {
-//                    val parts = it.split(":")
-//                    val email = parts[0]
-//                    val password = parts[1]
-//                    name = parts[2];
-//                    mapOf("email" to email, "password" to password)
-//                });
-//            }
+            val receivedStorageString = intent.getStringExtra("verySafeStorage")
 
-            val userCredential = intent.getParcelableExtra<UserCredential>("verySafeStorage")
+            Log.d("SignIn", "RECEIVED - $receivedStorageString")
 
-            if (userCredential != null) {
-                verySafeStorage.add(userCredential.data)
+            if (receivedStorageString !== null) {
+                val _data = receivedStorageString.split(';')
+                val data = mapOf("email" to _data[0], "password" to _data[1])
+                verySafeStorage.add(data);
             }
+
+//            val userCredential = intent.getParcelableExtra<UserCredential>("verySafeStorage")
+//
+//            if (userCredential != null) {
+//                verySafeStorage.add(userCredential.data)
+//            }
 
             val match = verySafeStorage.any {
                 it["email"] == email &&
