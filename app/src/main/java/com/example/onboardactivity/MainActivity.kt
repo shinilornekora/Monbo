@@ -22,4 +22,31 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.fragment_container_view, fragment)
         fragmentTransaction.commit()
     }
+
+    fun navigateToSignIn(extendedData: Bundle?) {
+        val signInFragment = SignInFragment();
+        signInFragment.apply {
+            arguments = extendedData
+        };
+
+        showFragment(signInFragment)
+    }
+
+    fun navigateToSignUp(extendedData: Bundle?) {
+        val signUpFragment = SignUpFragment();
+        signUpFragment.apply {
+            arguments = extendedData
+        };
+
+        showFragment(signUpFragment)
+    }
+
+    fun navigateToHome(extendedData: Bundle?) {
+        val homeFragment = HomeFragment();
+        homeFragment.apply {
+            arguments = extendedData
+        };
+
+        showFragment(homeFragment);
+    }
 }

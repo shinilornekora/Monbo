@@ -56,7 +56,7 @@ class SignInFragment : Fragment(R.layout.sign_in_fragment) {
             if (match) {
                 Toast.makeText(context, "Вход выполнен!", Toast.LENGTH_SHORT).show()
                 val activity = requireActivity() as MainActivity
-                activity.showFragment(HomeFragment())
+                activity.navigateToHome(null);
             } else {
                 Toast.makeText(context, "Неверный email или пароль.", Toast.LENGTH_SHORT).show()
             }
@@ -64,7 +64,7 @@ class SignInFragment : Fragment(R.layout.sign_in_fragment) {
 
         regButton.setOnClickListener {
             val activity = requireActivity() as MainActivity
-            activity.showFragment(SignUpFragment())
+            activity.navigateToSignUp(null);
         }
 
         return view

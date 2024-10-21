@@ -21,7 +21,7 @@ class OnboardFragment : Fragment() {
         val btn: Button = view.findViewById(R.id.button)
         btn.setOnClickListener {
             val activity = requireActivity() as MainActivity
-            activity.showFragment(SignInFragment())
+            activity.navigateToSignIn(null);
         }
         return view
     }

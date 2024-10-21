@@ -55,14 +55,11 @@ class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
                 putString("autoEmailCompletion", email)
             }
 
-            val signInFragment = SignInFragment().apply {
-                arguments = bundle
-            }
-            activity.showFragment(signInFragment)
+            activity.navigateToSignIn(bundle);
         }
 
         loginButton.setOnClickListener {
-            activity.showFragment(SignInFragment())
+            activity.navigateToSignIn(null)
         }
 
         return view
