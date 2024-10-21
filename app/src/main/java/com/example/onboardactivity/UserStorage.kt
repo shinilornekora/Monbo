@@ -1,14 +1,22 @@
 import android.os.Parcel
 import android.os.Parcelable
 
-data class UserCredential(val data: Map<String, String>) : Parcelable {
+data class UserCredential(
+    val name: String,
+    val email: String,
+    val password: String
+) : Parcelable {
+
     constructor(parcel: Parcel) : this(
-        (parcel.readHashMap(String::class.java.classLoader) as? Map<*, *>)?.mapKeys { it.key as String }
-            ?.mapValues { it.value as String } ?: emptyMap()
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readString() ?: ""
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeMap(data)
+        parcel.writeString(name)
+        parcel.writeString(email)
+        parcel.writeString(password)
     }
 
     override fun describeContents(): Int = 0
