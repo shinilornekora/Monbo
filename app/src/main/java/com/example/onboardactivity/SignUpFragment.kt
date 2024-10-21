@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 
 class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
     private lateinit var actionButton: Button
@@ -24,9 +25,8 @@ class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("SignUp", "Let-me-create-pls")
+        Log.d("SignUp", "ФРАГМЕНТ_СОЗДАН")
         val view = inflater.inflate(R.layout.sign_up_fragment, container, false)
-        val activity = requireActivity() as MainActivity
 
         nameInput = view.findViewById(R.id.name)
         emailInput = view.findViewById(R.id.email)
@@ -55,11 +55,11 @@ class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
                 putString("autoEmailCompletion", email)
             }
 
-            activity.navigateToSignIn(bundle);
+            findNavController().navigate(R.id.action_signUpFragment_to_signInFragment, bundle)
         }
 
         loginButton.setOnClickListener {
-            activity.navigateToSignIn(null)
+            findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
         }
 
         return view
@@ -67,21 +67,21 @@ class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
 
     override fun onStart() {
         super.onStart()
-        Log.d("SignUp", "Let-me-start-pls")
+        Log.d("SignUp", "ФРАГМЕНТ_СТАРТАНУЛ")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d("SignUp", "Let-me-resume-pls")
+        Log.d("SignUp", "ФРАГМЕНТ_ПРОДОЛЖИЛСЯ")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d("SignUp", "Let-me-stop-pls")
+        Log.d("SignUp", "ФРАГМЕНТ_ОСТАНОВИЛСЯ")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("SignUp", "Let-me-destroy-pls")
+        Log.d("SignUp", "ФРАГМЕНТ_ЛИКВИДИРОВАН")
     }
 }

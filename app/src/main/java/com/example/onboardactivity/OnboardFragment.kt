@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 
 class OnboardFragment : Fragment() {
 
@@ -15,34 +16,33 @@ class OnboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("Onbording", "Let-me-create-pls")
+        Log.d("Onboarding", "ФРАГМЕНТ_СОЗДАН")
         val view = inflater.inflate(R.layout.onboard_fragment, container, false)
 
         val btn: Button = view.findViewById(R.id.button)
         btn.setOnClickListener {
-            val activity = requireActivity() as MainActivity
-            activity.navigateToSignIn(null);
+            findNavController().navigate(R.id.action_onboardFragment_to_signInFragment)
         }
         return view
     }
 
     override fun onStart() {
         super.onStart()
-        Log.d("Onbording", "Let-me-start-pls")
+        Log.d("Onboarding", "ФРАГМЕНТ_СТАРТАНУЛ")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d("Onbording", "Let-me-resume-pls")
+        Log.d("Onboarding", "ФРАГМЕНТ_ПРОДОЛЖИЛСЯ")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d("Onbording", "Let-me-stop-pls")
+        Log.d("Onboarding", "ФРАГМЕНТ_ОСТАНОВИЛСЯ")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("Onbording", "Let-me-destroy-pls")
+        Log.d("Onboarding", "ФРАГМЕНТ_ЛИКВИДИРОВАН")
     }
 }

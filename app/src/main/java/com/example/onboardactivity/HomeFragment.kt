@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 
 class HomeFragment : Fragment(R.layout.home_fragment) {
     override fun onCreateView(
@@ -17,31 +18,31 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("Home", "Let-me-create-pls")
+        Log.d("Home", "ФРАГМЕНТ_СОЗДАН")
     }
 
     override fun onStart() {
         super.onStart()
-        Log.d("Home", "Let-me-start-pls")
+        Log.d("Home", "ФРАГМЕНТ_СТАРТАНУЛ")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d("Home", "Let-me-resume-pls")
+        Log.d("Home", "ФРАГМЕНТ_ПРОДОЛЖИЛСЯ")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d("Home", "Let-me-pause-pls")
+        Log.d("Home", "ФРАГМЕНТ_ОСТАНОВИЛСЯ")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d("Home", "Let-me-stop-pls")
+        Log.d("Home", "ФРАГМЕНТ_ОСТАНОВИЛСЯ")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.d("Home", "Let-me-destroy-pls")
+        Log.d("Home", "ФРАГМЕНТ_ЛИКВИДИРОВАН")
     }
 }

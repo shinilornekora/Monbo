@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 
 class SignInFragment : Fragment(R.layout.sign_in_fragment) {
     private lateinit var loginButton: Button
@@ -30,7 +31,7 @@ class SignInFragment : Fragment(R.layout.sign_in_fragment) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("SignIn", "Let-me-create-pls")
+        Log.d("SignIn", "ФРАГМЕНТ_СОЗДАН")
         val view = inflater.inflate(R.layout.sign_in_fragment, container, false)
 
         emailInput = view.findViewById(R.id.email)
@@ -43,28 +44,20 @@ class SignInFragment : Fragment(R.layout.sign_in_fragment) {
             val email = emailInput.text.toString()
             val password = passwordInput.text.toString()
 
-            val userCredential = arguments?.getParcelable<UserCredential>("verySafeStorage")
-
-            if (userCredential != null) {
-                verySafeStorage.add(userCredential)
-            }
-
             val match = verySafeStorage.any {
                 it.email == email && it.password == password
             }
 
             if (match) {
                 Toast.makeText(context, "Вход выполнен!", Toast.LENGTH_SHORT).show()
-                val activity = requireActivity() as MainActivity
-                activity.navigateToHome(null);
+                findNavController().navigate(R.id.action_signInFragment_to_homeFragment)
             } else {
                 Toast.makeText(context, "Неверный email или пароль.", Toast.LENGTH_SHORT).show()
             }
         }
 
         regButton.setOnClickListener {
-            val activity = requireActivity() as MainActivity
-            activity.navigateToSignUp(null);
+            findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
         }
 
         return view
@@ -72,15 +65,21 @@ class SignInFragment : Fragment(R.layout.sign_in_fragment) {
 
     override fun onStart() {
         super.onStart()
-        Log.d("SignIn", "Let-me-start-pls")
+        Log.d("SignIn", "ФРАГМЕНТ_СТАРТАНУЛ")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d("SignIn", "Let-me-resume-pls")
+        Log.d("SignIn", "ФРАГМЕНТ_ПРОДОЛЖИЛСЯ")
 
         _name = arguments?.getString("welcomeName")
         _email = arguments?.getString("autoEmailCompletion")
+
+        val newUser: UserCredential? = arguments?.getParcelable("verySafeStorage")
+
+        if (newUser != null) {
+            verySafeStorage.add(newUser)
+        }
 
         Log.d("SignIn", " - NAME: $_name, EMAIL: $_email")
 
@@ -92,11 +91,11 @@ class SignInFragment : Fragment(R.layout.sign_in_fragment) {
 
     override fun onStop() {
         super.onStop()
-        Log.d("SignIn", "Let-me-stop-pls")
+        Log.d("SignIn", "ФРАГМЕНТ_ОСТАНОВИЛСЯ")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("SignIn", "Let-me-destroy-pls")
+        Log.d("SignIn", "ФРАГМЕНТ_ЛИКВИДИРОВАН")
     }
 }
