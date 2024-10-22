@@ -22,7 +22,8 @@
             app:destination="@id/signUpFragment" />
         <action
             android:id="@+id/action_signInFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment">
+        </action>
     </fragment>
 
     <fragment
@@ -31,7 +32,16 @@
         tools:layout="@layout/sign_up_fragment" >
         <action
             android:id="@+id/action_signUpFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            app:destination="@id/signInFragment">
+            <argument
+                android:name="welcomeName"
+                app:argType="string"
+            />
+            <argument
+                android:name="autoEmailCompletion"
+                app:argType="string"
+            />
+        </action>
     </fragment>
 
     <fragment

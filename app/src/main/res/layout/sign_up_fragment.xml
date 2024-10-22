@@ -16,7 +16,7 @@
         android:src="@drawable/animal"
         android:layout_marginBottom="16dp"/>
 
-    <include layout="@layout/sign_up_form" />
+    <include layout="@layout/sign_up_form" android:id="@+id/formContainer"/>
 
     <LinearLayout
         android:layout_width="wrap_content"

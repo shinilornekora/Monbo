@@ -5,11 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.onboardactivity.databinding.OnboardFragmentBinding
 
 class OnboardFragment : Fragment() {
+    private var _binding: OnboardFragmentBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -17,13 +19,17 @@ class OnboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.d("Onboarding", "ФРАГМЕНТ_СОЗДАН")
-        val view = inflater.inflate(R.layout.onboard_fragment, container, false)
 
-        val btn: Button = view.findViewById(R.id.button)
-        btn.setOnClickListener {
+        _binding = OnboardFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.button.setOnClickListener {
             findNavController().navigate(R.id.action_onboardFragment_to_signInFragment)
         }
-        return view
     }
 
     override fun onStart() {
@@ -41,8 +47,9 @@ class OnboardFragment : Fragment() {
         Log.d("Onboarding", "ФРАГМЕНТ_ОСТАНОВИЛСЯ")
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
         Log.d("Onboarding", "ФРАГМЕНТ_ЛИКВИДИРОВАН")
     }
 }
