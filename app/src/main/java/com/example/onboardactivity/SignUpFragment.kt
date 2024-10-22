@@ -14,9 +14,7 @@ import com.example.onboardactivity.databinding.SignUpFragmentBinding
 
 class SignUpFragment : Fragment() {
     private var _binding: SignUpFragmentBinding? = null;
-    private var _formBinding: SignUpFormBinding? = null;
     private val binding get() = _binding!!
-    private val formBinding get() = _formBinding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,9 +24,6 @@ class SignUpFragment : Fragment() {
         Log.d("SignUp", "ФРАГМЕНТ_СОЗДАН")
 
         _binding = SignUpFragmentBinding.inflate(inflater, container, false);
-        // Похоже так делать низя, словил BSOD.
-//        _formBinding = SignUpFormBinding.inflate(inflater, container, false);
-//        binding.root.addView(formBinding.root)
 
         return binding.root;
     }
@@ -37,10 +32,10 @@ class SignUpFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState);
 
         binding.registryButton.setOnClickListener {
-            val name = formBinding.name.text.toString();
-            val email = formBinding.email.text.toString();
-            val password = formBinding.pass.text.toString();
-            val passVerify = formBinding.passVerify.text.toString();
+            val name = binding.formContainer.name.text.toString();
+            val email = binding.formContainer.email.text.toString();
+            val password = binding.formContainer.pass.text.toString();
+            val passVerify = binding.formContainer.passVerify.text.toString();
 
             if (password != passVerify) {
                 Toast.makeText(context, "Пароли не совпадают!", Toast.LENGTH_SHORT).show();
@@ -81,7 +76,6 @@ class SignUpFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null;
-        _formBinding = null;
         Log.d("SignUp", "ФРАГМЕНТ_ЛИКВИДИРОВАН")
     }
 }
