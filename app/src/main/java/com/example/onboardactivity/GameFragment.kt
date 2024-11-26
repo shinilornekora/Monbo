@@ -1,5 +1,6 @@
 package com.example.onboardactivity
 
+import GOTPerson
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,10 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.onboardactivity.databinding.GameOfFireAndIceFragmentBinding
+import kotlinx.coroutines.CoroutineScope
 
 class GameFragment : Fragment() {
     private var _binding: GameOfFireAndIceFragmentBinding? = null;
     private val binding get() = _binding!!
+
+    private lateinit var peopleData: List<GOTPerson>;
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -8,7 +8,6 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
-
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -25,12 +24,15 @@ class GameApiService {
         }
     }
 
-    suspend fun getGOTPeople(): List<GOTPerson> = withContext(Dispatchers.IO) {
-        try {
-            client.get("https://www.anapioficeandfire.com/api/characters").body()
-        } catch (e: Exception) {
-            Log.e("GameApiService", "Error fetching GOT people: ${e.message}")
-            emptyList()
+    // Функция для получения списка персонажей GOT
+    suspend fun getGOTPeople(): List<GOTPerson> {
+        return withContext(Dispatchers.IO) {
+            try {
+                client.get("https://www.anapioficeandfire.com/api/characters").body()
+            } catch (e: Exception) {
+                Log.e("GameApiService", "Error fetching GOT people: ${e.message}")
+                emptyList()
+            }
         }
     }
 }
