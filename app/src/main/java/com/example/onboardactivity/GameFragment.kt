@@ -7,14 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.onboardactivity.databinding.GameOfFireAndIceFragmentBinding
-import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 class GameFragment : Fragment() {
-    private var _binding: GameOfFireAndIceFragmentBinding? = null;
+    private var _binding: GameOfFireAndIceFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var peopleData: List<GOTPerson>;
+    private lateinit var peopleData: List<GOTPerson>
+    private val gameApiService = GameApiService() // Экземпляр вашего API сервиса
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,27 +31,37 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("Game", "ФРАГМЕНТ_СОЗДАН")
+        Log.d("Game", "ФРАГМЕНТ_НАЧАЛ_ОТРИСОВКУ")
+
+        // Если данные еще не загружены, выполняем загрузку
+        if (!this::peopleData.isInitialized) {
+            fetchData()
+        } else {
+            displayPeopleData()
+        }
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.d("Game", "ФРАГМЕНТ_СТАРТАНУЛ")
+    private fun fetchData() {
+        // Используем lifecycleScope для запуска корутин
+        lifecycleScope.launch {
+            Log.d("Game", "НАЧАЛ ЗАГРУЗКУ ДАННЫХ")
+            try {
+                peopleData = gameApiService.getGOTPeople()
+                Log.d("Game", "ДАННЫЕ УСПЕШНО ЗАГРУЖЕНЫ: ${peopleData.size} персонажей")
+                displayPeopleData()
+            } catch (e: Exception) {
+                Log.e("Game", "ОШИБКА ЗАГРУЗКИ ДАННЫХ: ${e.message}")
+                showError()
+            }
+        }
     }
 
-    override fun onResume() {
-        super.onResume()
-        Log.d("Game", "ФРАГМЕНТ_ПРОДОЛЖИЛСЯ")
+    private fun displayPeopleData() {
+        // Отобразить данные в интерфейсе
     }
 
-    override fun onPause() {
-        super.onPause()
-        Log.d("Game", "ФРАГМЕНТ_ОСТАНОВИЛСЯ")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("Game", "ФРАГМЕНТ_ОСТАНОВИЛСЯ")
+    private fun showError() {
+        // Показываем сообщение об ошибке
     }
 
     override fun onDestroyView() {
