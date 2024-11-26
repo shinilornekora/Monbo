@@ -1,6 +1,7 @@
 package com.example.onboardactivity
 
 import GOTPerson
+import GOTPersonResponse
 import android.util.Log
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -28,7 +29,8 @@ class GameApiService {
     suspend fun getGOTPeople(): List<GOTPerson> {
         return withContext(Dispatchers.IO) {
             try {
-                client.get("https://www.anapioficeandfire.com/api/characters").body()
+                val response: GOTPersonResponse = client.get("https://rickandmortyapi.com/api/character").body()
+                response.results
             } catch (e: Exception) {
                 Log.e("GameApiService", "Error fetching GOT people: ${e.message}")
                 emptyList()

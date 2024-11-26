@@ -33,6 +33,7 @@ class GameFragment : Fragment() {
 
         CoroutineScope(Dispatchers.Main).launch {
             val people = apiService.getGOTPeople()
+            Log.d("Я получил людей!", people.toString())
             adapter = PersonAdapter(people)
             binding.recyclerView.adapter = adapter
         }
