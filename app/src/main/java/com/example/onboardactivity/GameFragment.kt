@@ -1,3 +1,5 @@
+package com.example.onboardactivity
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -5,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.onboardactivity.GameApiService
-import com.example.onboardactivity.PersonAdapter
 import com.example.onboardactivity.databinding.GameOfFireAndIceFragmentBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -44,8 +44,29 @@ class GameFragment : Fragment() {
         binding.recyclerView.adapter = adapter
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.d("Home", "ФРАГМЕНТ_СТАРТАНУЛ")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("Home", "ФРАГМЕНТ_ПРОДОЛЖИЛСЯ")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("Home", "ФРАГМЕНТ_ОСТАНОВИЛСЯ")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("Home", "ФРАГМЕНТ_ОСТАНОВИЛСЯ")
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        Log.d("Home", "ФРАГМЕНТ_ЛИКВИДИРОВАН")
     }
 }
