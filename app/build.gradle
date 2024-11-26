@@ -1,5 +1,8 @@
-apply plugin: 'com.android.application'
-apply plugin: 'org.jetbrains.kotlin.android'
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.7.21'
+}
 
 android {
     namespace 'com.example.onboardactivity'
@@ -51,6 +54,7 @@ dependencies {
     // Kotlin Standard Library
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.21"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.21"
+    implementation "org.jetbrains.kotlin:kotlin-serialization:1.7.21"
 
     // Ktor (Client for HTTP communication)
     def ktor_version = "2.3.4"

@@ -30,6 +30,7 @@ class GameApiService {
         return withContext(Dispatchers.IO) {
             try {
                 val response: GOTPersonResponse = client.get("https://rickandmortyapi.com/api/character").body()
+                Log.d("Game", "Отправил хитрый респонс - " + response.toString())
                 response.results
             } catch (e: Exception) {
                 Log.e("GameApiService", "Error fetching GOT people: ${e.message}")
