@@ -28,4 +28,38 @@
     <include layout="@layout/chat_item_usual" />
     <include layout="@layout/chat_item_usual" />
     <include layout="@layout/chat_item_usual" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
+
+        <Button
+            android:id="@+id/gameoficeandfire"
+            android:layout_width="175dp"
+            android:layout_height="match_parent"
+            android:text="Игра престолов"
+            android:textAlignment="center"
+            android:textSize="14sp">
+        </Button>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" | "
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+
+        <Button
+            android:id="@+id/something"
+            android:layout_width="185dp"
+            android:layout_height="match_parent"
+            android:text="Скоро"
+            android:textAlignment="center">
+        </Button>
+
+    </LinearLayout>
+
 </LinearLayout>
