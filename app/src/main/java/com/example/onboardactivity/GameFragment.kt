@@ -1,5 +1,6 @@
 package com.example.onboardactivity
 
+import PersonAdapter
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -36,6 +37,8 @@ class GameFragment : Fragment() {
             Log.d("Я получил людей!", people.toString())
             adapter = PersonAdapter(people)
             binding.recyclerView.adapter = adapter
+
+            adapter.saveDataToFile(requireContext())
         }
     }
 

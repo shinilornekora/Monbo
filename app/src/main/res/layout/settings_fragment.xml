@@ -28,7 +28,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:text="Скрывать аватары отправителей"
-            android:paddingTop="20dp" />
+            android:paddingTop="20dp"
+            android:paddingBottom="30dp"/>
 
         <Switch
             android:id="@+id/switch_allow_groups"
@@ -36,7 +37,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:text="Разрешить добавлять себя в группы"
-            android:paddingTop="30dp" />
+            android:paddingTop="5dp"
+            android:paddingBottom="30dp" />
 
         <Switch
             android:id="@+id/switch_push_notifications"
@@ -44,7 +46,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:text="Пуш-уведомления"
-            android:paddingTop="30dp" />
+            android:paddingTop="5dp"
+            android:paddingBottom="20dp" />
 
         <LinearLayout
             android:layout_height="wrap_content"
@@ -68,7 +71,7 @@
                 android:layout_height="match_parent"
                 android:textColor="@color/white"
                 android:text="Your e-mail"
-                android:paddingRight="20dp"/>
+                android:paddingRight="10dp"/>
         </LinearLayout>
 
         <TextView
@@ -85,12 +88,28 @@
             android:layout_height="wrap_content"
             android:text="Изменить папку" />
 
+        <TextView
+            android:id="@+id/file_status_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Файл: не найден"
+            android:textColor="@color/white"
+            android:layout_marginTop="16dp" />
+
         <Button
             android:id="@+id/button_delete_imported_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Удалить данные"
             android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/backup_status_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Резервная копия: не найдена"
+            android:textColor="@color/white"
+            android:layout_marginTop="8dp" />
 
         <Button
             android:id="@+id/button_restore_backup"

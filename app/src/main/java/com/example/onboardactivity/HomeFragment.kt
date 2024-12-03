@@ -33,6 +33,10 @@ class HomeFragment : Fragment() {
             Toast.makeText(context, "Зима скоро...", Toast.LENGTH_SHORT).show();
             findNavController().navigate(R.id.action_homeFragment_to_gameFragment);
         }
+
+        binding.buttonOpenSettings.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_settingsFragment);
+        }
     }
 
     override fun onStart() {
