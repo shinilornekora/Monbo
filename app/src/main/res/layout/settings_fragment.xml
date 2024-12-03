@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/gradientus"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/settings_named"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Настройки приложения"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:paddingBottom="25dp" />
+
+        <Switch
+            android:id="@+id/switch_hide_avatars"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Скрывать аватары отправителей"
+            android:paddingTop="20dp" />
+
+        <Switch
+            android:id="@+id/switch_allow_groups"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Разрешить добавлять себя в группы"
+            android:paddingTop="30dp" />
+
+        <Switch
+            android:id="@+id/switch_push_notifications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Пуш-уведомления"
+            android:paddingTop="30dp" />
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
+            >
+            <TextView
+                android:id="@+id/email_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="E-mail" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:text="Your e-mail"
+                android:paddingRight="20dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_folder_path"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Использовать для импорта папку: /Downloads"
+            android:paddingTop="26dp" />
+
+        <Button
+            android:id="@+id/button_select_folder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Изменить папку" />
+
+        <Button
+            android:id="@+id/button_delete_imported_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Удалить данные"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/button_restore_backup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Восстановить последнюю резервную копию"
+            android:layout_marginTop="16dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/go_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Закрыть страницу настроек"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+</ScrollView>

@@ -45,12 +45,21 @@
     </fragment>
 
     <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.onboardactivity.SettingsFragment"
+        tools:layout="@layout/settings_fragment" >
+    </fragment>
+
+    <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.onboardactivity.HomeFragment"
         tools:layout="@layout/home_fragment">
         <action
             android:id="@+id/action_homeFragment_to_gameFragment"
             app:destination="@id/gameOfFireAndIce" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
     <fragment

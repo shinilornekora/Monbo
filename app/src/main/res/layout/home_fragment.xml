@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/animal"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,7 +21,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
-        android:layout_marginBottom="28dp"/>
+        android:layout_marginBottom="28dp" />
 
     <include layout="@layout/chat_item_usual" />
     <include layout="@layout/chat_item_usual" />
@@ -41,8 +41,7 @@
             android:layout_height="match_parent"
             android:text="Игра престолов"
             android:textAlignment="center"
-            android:textSize="14sp">
-        </Button>
+            android:textSize="14sp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,16 +49,25 @@
             android:textSize="24sp"
             android:textAlignment="center"
             android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:textColor="#000000" />
 
         <Button
             android:id="@+id/something"
             android:layout_width="185dp"
             android:layout_height="match_parent"
             android:text="Скоро"
-            android:textAlignment="center">
-        </Button>
-
+            android:textAlignment="center" />
     </LinearLayout>
 
+    <!-- Add the settings button at the bottom -->
+    <Button
+        android:id="@+id/button_open_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="16dp"
+        android:text="Настройки"
+        android:textSize="16sp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black" />
 </LinearLayout>
