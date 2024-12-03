@@ -122,7 +122,7 @@ class SettingsFragment : Fragment() {
         binding.switchAllowGroups.isChecked = sharedPreferences.getBoolean("allow_groups", false)
         binding.switchPushNotifications.isChecked = sharedPreferences.getBoolean("push_notifications", true)
 
-        val email = sharedPreferences.getString("user_email", "Your e-mail")
+        val email = sharedPreferences.getString("email", "Your e-mail")
         binding.email.text = email
 
         lifecycleScope.launch {

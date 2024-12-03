@@ -1,6 +1,8 @@
 package com.example.onboardactivity
 
 import UserCredential
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,6 +20,8 @@ class SignInFragment : Fragment() {
     private var _name: String? = null
     private var _email: String? = null
 
+    private lateinit var sharedPreferences: SharedPreferences
+
     private val verySafeStorage = mutableListOf<UserCredential>(
         UserCredential("test@test.ru", "test@test.ru", "123213")
     )
@@ -28,8 +32,9 @@ class SignInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.d("SignIn", "ФРАГМЕНТ_СОЗДАН")
-
+        sharedPreferences = requireContext().getSharedPreferences("app_settings", Context.MODE_PRIVATE)
         _binding = SignInFragmentBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -46,6 +51,7 @@ class SignInFragment : Fragment() {
 
             if (match) {
                 Toast.makeText(context, "Вход выполнен!", Toast.LENGTH_SHORT).show()
+                sharedPreferences.edit().putString("email", email).apply();
                 findNavController().navigate(R.id.action_signInFragment_to_homeFragment)
             } else {
                 Toast.makeText(context, "Неверный email или пароль.", Toast.LENGTH_SHORT).show()
