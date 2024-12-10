@@ -3,60 +3,97 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="16dp"
     android:background="?attr/selectableItemBackground">
 
     <LinearLayout
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
     >
-        <TextView
-            android:id="@+id/identifier"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:backgroundTintMode="src_in"
+            android:id="@+id/chatAvatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/animal" />
+        <LinearLayout
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_marginRight="2dp" />
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+        >
+            <TextView
+                android:id="@+id/identifier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginRight="2dp" />
 
-        <TextView
-            android:id="@+id/personName"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/personName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginRight="2dp" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_marginRight="2dp" />
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+        >
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginRight="2dp" />
+            <TextView
+                android:id="@+id/species"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginRight="2dp" />
+            <TextView
+                android:id="@+id/gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:layout_marginRight="2dp" />
+        </LinearLayout>
     </LinearLayout>
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
     <LinearLayout
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:orientation="horizontal"
-    >
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+        <Button
+            android:id="@+id/button_delete_certain_character"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_marginRight="2dp" />
-        <TextView
-            android:id="@+id/species"
-            android:layout_width="wrap_content"
+            android:text="Удалить"
+            android:layout_marginTop="5dp"
+            android:textSize="9sp"/>
+        <Button
+            android:id="@+id/button_update_info"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_marginRight="2dp" />
-        <TextView
-            android:id="@+id/gender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:layout_marginRight="2dp" />
+            android:text="Make alive"
+            android:layout_marginTop="5dp"
+            android:textSize="9sp"/>
     </LinearLayout>
 </LinearLayout>

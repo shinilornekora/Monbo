@@ -20,12 +20,25 @@ class PersonAdapter(
 
     class PersonViewHolder(private val binding: ItemPersonBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(person: GOTCharacterEntity) {
+        fun bind(person: GOTCharacterEntity, repository: GOTCharacterRepository, coroutineScope: CoroutineScope) {
             binding.identifier.text = person.index.toString()
             binding.personName.text = person.name
             binding.gender.text = person.gender
             binding.species.text = person.species
             binding.status.text = person.status
+
+            binding.buttonDeleteCertainCharacter.setOnClickListener {
+                coroutineScope.launch(Dispatchers.Main) {
+                    repository.deleteCharacter(person)
+                }
+            }
+
+            binding.buttonUpdateInfo.setOnClickListener {
+                coroutineScope.launch(Dispatchers.Main) {
+                    val updatedPerson = person.copy(status = "Alive")
+                    repository.updateCharacter(updatedPerson)
+                }
+            }
         }
     }
 
@@ -36,7 +49,7 @@ class PersonAdapter(
 
     override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
         val person = people[position]
-        holder.bind(person)
+        holder.bind(person, repository, coroutineScope)
     }
 
     override fun getItemCount(): Int = people.size

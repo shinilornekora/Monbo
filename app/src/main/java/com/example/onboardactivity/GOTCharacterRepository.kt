@@ -54,4 +54,16 @@ class GOTCharacterRepository(
         return dao.getAllCharactersFlow()
     }
 
+    suspend fun deleteCharacter(character: GOTCharacterEntity) {
+        dao.deleteCharacter(character)
+    }
+
+    suspend fun deleteAllCharacters() {
+        dao.deleteAllCharacters()
+    }
+
+    suspend fun updateCharacter(character: GOTCharacterEntity) {
+        dao.updateCharacter(character)
+    }
+
 }

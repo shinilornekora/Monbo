@@ -20,6 +20,9 @@ interface GOTCharacterDao {
     @Query("DELETE FROM characters")
     suspend fun deleteAllCharacters()
 
+    @Update
+    suspend fun updateCharacter(character: GOTCharacterEntity)
+
     @Query("SELECT * FROM characters ORDER BY id ASC")
     fun getAllCharactersFlow(): Flow<List<GOTCharacterEntity>>
 
