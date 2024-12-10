@@ -1,6 +1,7 @@
 package com.example.onboardactivity
 
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface GOTCharacterDao {
@@ -18,4 +19,8 @@ interface GOTCharacterDao {
 
     @Query("DELETE FROM characters")
     suspend fun deleteAllCharacters()
+
+    @Query("SELECT * FROM characters ORDER BY id ASC")
+    fun getAllCharactersFlow(): Flow<List<GOTCharacterEntity>>
+
 }

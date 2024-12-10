@@ -2,22 +2,22 @@ package com.example.onboardactivity
 
 import PersonAdapter
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.onboardactivity.databinding.GameOfFireAndIceFragmentBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class GameFragment : Fragment() {
+
     private var _binding: GameOfFireAndIceFragmentBinding? = null
     private val binding get() = _binding!!
-    private val apiService = GameApiService()
     private lateinit var adapter: PersonAdapter
+    private lateinit var repository: GOTCharacterRepository
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,47 +30,52 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val database = GOTCharacterDatabase.getInstance(requireContext())
+        val dao = database.characterDao()
+        val api = GameApiService()
+        repository = GOTCharacterRepository(dao, api)
+
         setupRecyclerView()
 
-        CoroutineScope(Dispatchers.Main).launch {
-            val people = apiService.getGOTPeople()
-            Log.d("Я получил людей!", people.toString())
-            adapter = PersonAdapter(people)
-            binding.recyclerView.adapter = adapter
-
-            adapter.saveDataToFile(requireContext())
+        lifecycleScope.launch {
+            loadData()
         }
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            lifecycleScope.launch {
+                refreshData()
+                binding.swipeRefreshLayout.isRefreshing = false
+            }
+        }
+
+        observeData()
     }
 
     private fun setupRecyclerView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = PersonAdapter(emptyList())
+        adapter = PersonAdapter(emptyList(), repository, lifecycleScope)
         binding.recyclerView.adapter = adapter
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.d("Home", "ФРАГМЕНТ_СТАРТАНУЛ")
+    private suspend fun loadData() {
+        adapter.loadData(requireContext())
     }
 
-    override fun onResume() {
-        super.onResume()
-        Log.d("Home", "ФРАГМЕНТ_ПРОДОЛЖИЛСЯ")
+    private suspend fun refreshData() {
+        adapter.refreshData()
     }
 
-    override fun onPause() {
-        super.onPause()
-        Log.d("Home", "ФРАГМЕНТ_ОСТАНОВИЛСЯ")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("Home", "ФРАГМЕНТ_ОСТАНОВИЛСЯ")
+    private fun observeData() {
+        lifecycleScope.launch {
+            repository.observeCharactersFlow().collect { newData ->
+                adapter.updateData(newData)
+            }
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        Log.d("Home", "ФРАГМЕНТ_ЛИКВИДИРОВАН")
     }
 }

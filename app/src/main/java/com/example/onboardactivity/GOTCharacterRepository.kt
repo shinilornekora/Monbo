@@ -1,5 +1,5 @@
 package com.example.onboardactivity
-
+import kotlinx.coroutines.flow.Flow
 
 class GOTCharacterRepository(
     private val dao: GOTCharacterDao,
@@ -47,4 +47,9 @@ class GOTCharacterRepository(
         }
         dao.insertCharacters(entities)
     }
+
+    fun observeCharactersFlow(): Flow<List<GOTCharacterEntity>> {
+        return dao.getAllCharactersFlow()
+    }
+
 }
