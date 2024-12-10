@@ -1,4 +1,5 @@
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -48,9 +49,11 @@ class PersonAdapter(
 
     // Загрузка данных из репозитория
     fun loadData(context: Context) {
+        Log.d("[GAME]", "call to repository detected.")
         coroutineScope.launch(Dispatchers.IO) {
             val data = repository.getCharacters()
             withContext(Dispatchers.Main) {
+                Log.d("[GAME]", "call was satisfied with data of length " + data.size)
                 updateData(data)
             }
         }

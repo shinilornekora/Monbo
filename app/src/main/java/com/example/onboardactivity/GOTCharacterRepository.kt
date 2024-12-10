@@ -22,7 +22,8 @@ class GOTCharacterRepository(
                     gender = it.gender,
                     originName = it.origin.name,
                     locationName = it.location.name,
-                    image = it.image
+                    image = it.image,
+                    index = it.index
                 )
             }
             dao.insertCharacters(entities)
@@ -42,7 +43,8 @@ class GOTCharacterRepository(
                 gender = it.gender,
                 originName = it.origin.name,
                 locationName = it.location.name,
-                image = it.image
+                image = it.image,
+                index = it.index
             )
         }
         dao.insertCharacters(entities)
